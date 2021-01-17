@@ -7,8 +7,8 @@ package ru.job4j.max;
 public class Reduce {
     private int[] array;
 
-    public void to(int[] arrayMethod) {
-        array = arrayMethod;
+    public void to(int[] array) {
+        this.array = array;
     }
 
     public void print() {
