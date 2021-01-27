@@ -7,6 +7,7 @@ public class TextReport {
     }
 }
 
+@Override
 class JSONReport extends TextReport {
 
     public String generate(String name, String body) {
@@ -14,6 +15,7 @@ class JSONReport extends TextReport {
     }
 }
 
+@Override
 class HtmlReport extends TextReport {
 
     public String generate(String name, String body) {
