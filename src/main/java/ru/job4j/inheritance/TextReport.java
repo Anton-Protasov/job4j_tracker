@@ -7,17 +7,17 @@ public class TextReport {
     }
 }
 
-@Override
 class JSONReport extends TextReport {
 
+    @Override
     public String generate(String name, String body) {
         return name + System.lineSeparator() + body;
     }
 }
 
-@Override
 class HtmlReport extends TextReport {
 
+    @Override
     public String generate(String name, String body) {
         return "<h1>" + name + "</h1>" +
                 "<br/>" +
