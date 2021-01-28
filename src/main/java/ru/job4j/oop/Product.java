@@ -1,6 +1,6 @@
 package ru.job4j.oop;
 
-public class Product {
+public final class Product {
     private String name;
     private int price;
 
@@ -22,31 +22,35 @@ public class Product {
     }
 }
 
-/**
- * Выполнение
- *
-class Shop {
-    public static void main(String[] args) {
-        Product product = of("Oil", 100);
-        System.out.println(product.label());
-    }
+//Через неделю нам потребовались продукты со скидкой. Мы делаем наследника.
 
-    public static Product of(String name, int price) {
-        return new Product(name, price);
-    }
-}
- */
+// Вариант 1. Работает в случае применения наследования
 
-/**
- * Через неделю нам потребовались продукты со скидкой. Мы делаем наследника.
- */
-
+/*
 class LiquidationProduct extends Product {
     public LiquidationProduct(String name, int price) {
         super(name, price);
     }
 
-    @Override
+        @Override
+    public int discount() {
+        return 90;
+    }
+*/
+
+// Вариант 2. Когда наследование не работает. Применяем полиморфизм.
+
+final class LiquidationProduct {
+    private Product product;
+
+    public LiquidationProduct(String name, int price) {
+        product = new Product(name, price);
+    }
+
+    public String lable() {
+        return product.label();
+    }
+
     public int discount() {
         return 90;
     }
@@ -57,7 +61,7 @@ class LiquidationProduct extends Product {
  */
 class Shop {
     public static void main(String[] args) {
-        Product product = of("Oil", 100);
+        Product product = of("oil", 100);
         System.out.println(product.label());
     }
 
@@ -68,8 +72,6 @@ class Shop {
         return new Product(name, price);
     }
 }
-
-
 
 
 
