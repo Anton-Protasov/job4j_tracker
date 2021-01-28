@@ -47,6 +47,10 @@ final class LiquidationProduct {
         product = new Product(name, price);
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
     public String lable() {
         return product.label();
     }
@@ -66,12 +70,9 @@ class Shop {
     }
 
     public static Product of(String name, int price) {
-        if ("Oil".equals(name)) {
-            return new LiquidationProduct(name, price);
+        if ("oil".equals(name)) {
+            return new LiquidationProduct(name, price).getProduct();
         }
         return new Product(name, price);
     }
 }
-
-
-
