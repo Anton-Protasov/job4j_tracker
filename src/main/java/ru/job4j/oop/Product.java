@@ -44,7 +44,7 @@ final class LiquidationProduct {
     private Product product;
 
     public LiquidationProduct(String name, int price) {
-        product = new Product(name, price);
+        product = new Product(name, price- discount());
     }
 
     public Product getProduct() {
