@@ -1,24 +1,35 @@
 package ru.job4j.tracker;
 
-/**
- * 7. Date. Отображение даты. [#395274]
- *
- * - Добавьте поле типа LocalDateTime, присвойте имя created.
- * Сразу проинициализируйте это поле текущей датой и временем, используйте статический метод now().
- * Добавьте геттер, чтобы получить доступ к созданному полю.
- * Добавьте класс StartUI, в нем создайте один объект Item.
- * На этом объекте вызовите геттер поля created,
- * выведите полученную дату в консоль в отформатированном варианте,
- * в качестве паттерна используйте следующую строку: "dd-MMMM-EEEE-yyyy HH:mm:ss"
+/*
+ * 5. Tracker - хранилище [#395287]
+ * Класс Item описывает модель заявления.
+ * Поле id - это уникальный номер заявления.
+ * Поле name содержит название заявления.
  */
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class Item {
     private int id;
     private String name;
     LocalDateTime created;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return id == item.id &&
+                Objects.equals(name, item.name) &&
+                Objects.equals(created, item.created);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, created);
+    }
 
     public Item() {
     }
@@ -53,18 +64,6 @@ public class Item {
 
     public void setName(String name) {
         this.name = name;
-    }
-}
-
-class StartUI {
-
-    public static void main(String[] args) {
-        Item item = new Item(LocalDateTime.now());
-        System.out.println("before formatting: " + item.created);
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
-        String currentDateTimeFormat = item.created.format(formatter);
-        System.out.println("after formatting:  " + currentDateTimeFormat);
     }
 }
 
