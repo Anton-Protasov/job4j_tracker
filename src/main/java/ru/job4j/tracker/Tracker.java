@@ -14,6 +14,12 @@ import java.util.Arrays;
  * Метод public Item findById(int id) проверяет в цикле все элементы массива items, сравнивая id с аргументом int id
  * и возвращает найденный Item. Если Item не найден - возвращает null.
  *
+ * 6. Метод замены заявки. Tracker.replace [#395282]
+ * Процесс замены отличается от процесса добавление, тем что у нас остается одинаковый ключ id.
+ * В случае добавление новой заявки, мы генерируем всегда новый ключ. Поэтому
+ * Первоначально нам нужно найти ячейку с id приходящем в параметре  - метод indexOf(int id)
+ * метод public boolean replace(int id, Item item) заменяет заявки c id на заявку item, При замене старый id сохраняем.
+ * Вернуть true, если замена произведена или false, если index по id не найден
  */
 
 public class Tracker {
@@ -45,6 +51,7 @@ public class Tracker {
     }
 
     public Item findById(int id) {
+        /* Данная часть программы из задачи 5 при реализации задачи 6 преобразована
         Item rsl = null;
         for (int index = 0; index < size; index++) {
             Item item = items[index];
@@ -52,6 +59,31 @@ public class Tracker {
                 rsl = item;
                 break;
             }
+        }
+        return rsl;
+         */
+        int index = indexOf(id);
+        return index != -1 ? items[index] : null;
+    }
+
+    private int indexOf(int id) {
+        int rsl = -1;
+        for (int index = 0; index < size; index++) {
+            if (items[index].getId() == id) {
+                rsl = index;
+                break;
+            }
+        }
+        return rsl;
+    }
+
+    public boolean replace(int id, Item item) {
+        int index = indexOf(id);
+        boolean rsl = false;
+        if (index != -1) {
+            item.setId(items[index].getId());
+            items[index] = item;
+            rsl = true;
         }
         return rsl;
     }
