@@ -13,6 +13,7 @@ import java.util.Arrays;
  * Алгоритм этого метода аналогичен методу findAll
  * Метод public Item findById(int id) проверяет в цикле все элементы массива items, сравнивая id с аргументом int id
  * и возвращает найденный Item. Если Item не найден - возвращает null.
+ *
  */
 
 public class Tracker {
@@ -27,32 +28,21 @@ public class Tracker {
     }
 
     public Item[] findAll() {
-        int size1 = 0;
-        Item item = new Item();
-        Item[] itemsWithoutNull = new Item[items.length];
-        for (int i = 0; i < items.length; i++) {
-            item = items[i];
-            if (item != null) {
-                itemsWithoutNull[size1] = item;
-                size1++;
-            }
-        }
-        return Arrays.copyOf(itemsWithoutNull, size1);
+        return Arrays.copyOf(items, size);
     }
 
     public Item[] findByName(String key) {
         int size2 = 0;
-        Item item = new Item();
-        Item[] itemsWithNameEquelKey = new Item[items.length];
-        for (int i = 0; i < items.length; i++) {
+        Item[] rsl = new Item[items.length];
+        for (int i = 0; i < size; i++) {
             String name = items[i].getName();
             if (name.equals(key)) {
-                itemsWithNameEquelKey[size2] = items[i];
+                rsl[size2] = items[i];
                 size2++;
             }
         }
-        return Arrays.copyOf(itemsWithNameEquelKey, size2);
-        }
+        return Arrays.copyOf(rsl, size2);
+    }
 
     public Item findById(int id) {
         Item rsl = null;
