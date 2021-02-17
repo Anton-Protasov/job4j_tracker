@@ -91,7 +91,7 @@ public class Tracker {
         int index = indexOf(id);
         boolean rsl = false;
         if (index != -1) {
-            item.setId(items[index].getId());
+            item.setId(id);
             items[index] = item;
             rsl = true;
         }
