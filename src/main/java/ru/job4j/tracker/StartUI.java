@@ -20,8 +20,9 @@ class StartUI {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
         String currentDateTimeFormat = item.created.format(formatter);
         System.out.println("after formatting:  " + currentDateTimeFormat);
- */
+*/
 
+/*
         Tracker tracker = new Tracker();
         Item item1 = new Item();
         Item item2 = new Item();
@@ -30,5 +31,10 @@ class StartUI {
         System.out.println("Элемент с ID = 1: "+ tracker.findById(1).getName());
         tracker.add(item2);
         System.out.println("Элемент с ID = 0: "+ tracker.findById(0));
+*/
+        Item item = new Item();
+        item.setId(1);
+        item.setName("Anton");
+        System.out.println(item);
     }
 }

@@ -5,6 +5,7 @@ package ru.job4j.tracker;
  * Класс Item описывает модель заявления.
  * Поле id - это уникальный номер заявления.
  * Поле name содержит название заявления.
+ * 9. toString [#395286]
  */
 
 import java.time.LocalDateTime;
@@ -64,5 +65,13 @@ public class Item {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, created);
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
