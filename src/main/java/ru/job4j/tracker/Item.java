@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Item {
     private int id;
     private String name;
-    LocalDateTime created;
+    private LocalDateTime created;
 
     public Item() {
     }
