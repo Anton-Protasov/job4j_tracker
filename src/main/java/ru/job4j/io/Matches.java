@@ -23,6 +23,14 @@ public class Matches {
             String player = turn ? "Первый игрок" : "Второй игрок";
             System.out.println(player + " введите число от 1 до 3:");
             int matches = Integer.parseInt(input.nextLine());
+
+            // Валидация:
+            while (matches < 1 | matches > 3 | matches > count) {
+                System.out.println("не корректное значение. " +
+                        "Вы можете взять только от 1 до 3 спичек, и не более оставшихся на столе попробуйте снова");
+                matches = Integer.parseInt(input.nextLine());
+            }
+
             turn = !turn;
             count = count - matches;
             System.out.println("На столе осталось " + count + " спичек");
