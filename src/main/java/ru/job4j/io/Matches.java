@@ -25,7 +25,7 @@ public class Matches {
             int matches = Integer.parseInt(input.nextLine());
 
             // Валидация:
-            while (matches < 1 | matches > 3 | matches > count) {
+            while (matches < 1 || matches > 3 || matches > count) {
                 System.out.println("не корректное значение. " +
                         "Вы можете взять только от 1 до 3 спичек, и не более оставшихся на столе попробуйте снова");
                 matches = Integer.parseInt(input.nextLine());
