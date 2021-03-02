@@ -13,88 +13,96 @@ import java.util.Scanner;
 public class StartUI {
 
     public void init(Scanner scanner, Tracker tracker) {
-        Item[] rsl;
-        Item item = new Item();
         boolean run = true;
 
         while (run) {
             this.showMenu();
-
             int input = Integer.parseInt(scanner.nextLine());
 
             if (input == 0) {
                 System.out.print("Введите имя заявки: ");
                 String name = scanner.nextLine();
+                Item item = new Item();
                 item.setName(name);
                 tracker.add(item);
                 System.out.println("Заявка успешно заведена");
                 System.out.println();
-            }
+            } else {
 
-            if (input == 1) {
-                tracker.findAll();
-                rsl = new Item[tracker.findAll().length];
-                for (int i = 0; i < rsl.length; i++) {
-                    System.out.println("Заявка № " + item.getId() + " имя заявки: " + item.getName());
-                }
-                System.out.println();
-            }
-
-            if (input == 2) {
-                System.out.print("Введите номер заявки, которую необходимо отредактировать: ");
-                int id = Integer.parseInt(scanner.nextLine());
-                System.out.print("Введите имя заявки, которую необходимо отредактировать: ");
-                String name = scanner.nextLine();
-                Item newItem = new Item();
-                newItem.setName(name);
-                tracker.replace(id, newItem);
-                if (tracker.replace(id, newItem)) {
-                    System.out.println("Замена заявки произошла успешно");
-                } else {
-                    System.out.println("Заявки с указанным номером не существует");
-                }
-                System.out.println();
-            }
-
-            if (input == 3) {
-                System.out.print("Введите номер заявки, которую необходимо удалить: ");
-                int id = Integer.parseInt(scanner.nextLine());
-                tracker.delete(id);
-                if (tracker.delete(id)) {
-                    System.out.println("Удаление заявки произошла успешно");
-                } else {
-                    System.out.println("Заявки с указанным номером не существует");
-                }
-                System.out.println();
-            }
-
-            if (input == 4) {
-                System.out.print("Введите номер заявки, которую необходимо найти: ");
-                int id = Integer.parseInt(scanner.nextLine());
-                item = tracker.findById(id);
-                if (item != null) {
-                    System.out.println("Имя заявки с номером " + id + " : " + item.getName());
-                } else {
-                    System.out.println("Заявки с указанным номером не существует");
-                }
-                System.out.println();
-            }
-
-            if (input == 5) {
-                System.out.print("Введите имя заявки, которую необходимо найти: ");
-                String name = scanner.nextLine();
-                rsl = tracker.findByName(name);
-                if (rsl.length > 0) {
+                if (input == 1) {
+                    Item[] rsl;
+                    Item item = new Item();
+                    rsl = tracker.findAll();
                     for (int i = 0; i < rsl.length; i++) {
-                        System.out.println("Заявка №" + item.getId() + "имя заявки: " + item.getName());
+                        System.out.println("Заявка № " + rsl[i].getId() + " имя заявки: " + rsl[i].getName());
                     }
+                    System.out.println();
                 } else {
-                    System.out.println("Заявки с указанным именем не существуют");
-                }
-                System.out.println();
-            }
 
-            if (input == 6) run = false;
+                    if (input == 2) {
+                        System.out.print("Введите номер заявки, которую необходимо отредактировать: ");
+                        int id = Integer.parseInt(scanner.nextLine());
+                        System.out.print("Введите имя заявки, которую необходимо отредактировать: ");
+                        String name = scanner.nextLine();
+                        Item newItem = new Item();
+                        newItem.setName(name);
+                        if (tracker.replace(id, newItem)) {
+                            System.out.println("Замена заявки произошла успешно");
+                        } else {
+                            System.out.println("Заявки с указанным номером не существует");
+                        }
+                        System.out.println();
+                    } else {
+
+                        if (input == 3) {
+                            System.out.print("Введите номер заявки, которую необходимо удалить: ");
+                            int id = Integer.parseInt(scanner.nextLine());
+                            tracker.delete(id);
+                            if (tracker.delete(id)) {
+                                System.out.println("Удаление заявки произошла успешно");
+                            } else {
+                                System.out.println("Заявки с указанным номером не существует");
+                            }
+                            System.out.println();
+                        } else {
+
+                            if (input == 4) {
+                                System.out.print("Введите номер заявки, которую необходимо найти: ");
+                                int id = Integer.parseInt(scanner.nextLine());
+                                Item item = new Item();
+                                item = tracker.findById(id);
+                                if (item != null) {
+                                    System.out.println("Имя заявки с номером " + id + " : " + item.getName());
+                                } else {
+                                    System.out.println("Заявки с указанным номером не существует");
+                                }
+                                System.out.println();
+                            } else {
+
+                                if (input == 5) {
+                                    System.out.print("Введите имя заявки, которую необходимо найти: ");
+                                    String name = scanner.nextLine();
+                                    Item item = new Item();
+                                    Item[] rsl;
+                                    rsl = tracker.findByName(name);
+                                    if (rsl.length > 0) {
+                                        for (int i = 0; i < rsl.length; i++) {
+                                            System.out.println("Заявка № " + rsl[i].getId() +
+                                                    " имя заявки: " + rsl[i].getName());
+                                        }
+                                    } else {
+                                        System.out.println("Заявки с указанным именем не существуют");
+                                    }
+                                    System.out.println();
+                                } else {
+
+                                    if (input == 6) run = false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
