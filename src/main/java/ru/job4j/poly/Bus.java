@@ -1,34 +1,35 @@
 package ru.job4j.poly;
 
-import java.util.Scanner;
+public class Bus implements Vehicle {
+    private int destination;
 
-public class Bus implements Transport {
-
-
-    @Override
-    public void drive() {
-        System.out.println("Куда едем?");
-        Scanner input = new Scanner(System.in);
-        String destination = input.nextLine();
-
+    Bus(int destination) {
+        this.destination = destination;
     }
 
     @Override
-    public void passengers (int pas) {
-        System.out.println("Сколько пассажиров едет?");
-        Scanner input = new Scanner(System.in);
-        pas = Integer.valueOf(input.nextLine());
-
+    public int fare(int destination) {
+        int money = -1;
+        if (100 >= destination) {
+            money = 300;
+        }
+        else if (100 < destination || destination < 500) {
+            money = 400;
+        }
+        else if (500 <= destination || destination <= 2000) {
+            money = 3000;
+        }
+        return money;
     }
 
     @Override
-    public int cost(int petrol) {
-        System.out.println("Сколько литров топлива заправить?");
-        Scanner inputPetrol = new Scanner(System.in);
-        petrol = Integer.valueOf(inputPetrol.nextLine());
-        System.out.println("Сколько стоит один литр?");
-        Scanner inputMoney = new Scanner(System.in);
-        int money = Integer.valueOf(inputMoney.nextLine());
-        return petrol * money;
+    public void move() {
+        int rsl = this.fare(destination);
+        if (rsl == -1) {
+            System.out.println("На такие расстояния автобусы не ездят." +
+                    "Выберите другой вид странспорта");
+        } else {
+            System.out.println("Стоимость проезда на автобусе обойдется в: " + rsl + " рублей");
+        }
     }
 }
