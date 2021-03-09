@@ -8,21 +8,71 @@ package ru.job4j.tracker;
 / 6. Exit Program / Select:
  */
 
-import ru.job4j.oop.Transport;
-
 public class StartUI {
 
-    public void init(Input input, Tracker tracker) {
+    public static void createItem(Input input, Tracker tracker) {
+        System.out.println("=== Create a new Item ====");
+        String name = input.askStr("Введите имя заявки: ");
+        Item item = new Item(name);
+        tracker.add(item);
+    }
+
+    public static void replaceItem(Input input, Tracker tracker) {
+        System.out.println("=== Replace Item ====");
+        int id = input.askInt("Введите номер заявки, " +
+                "которую необходимо отредактировать: ");
+        String name = input.askStr("Введите новое имя заявки " + id + ": ");
+        Item newItem = new Item(name);
+        if (tracker.replace(id, newItem)) {
+            System.out.println("Замена заявки произошла успешно");
+        } else {
+            System.out.println("Заявки с указанным номером не существует");
+        }
+    }
+
+    public static void deleteItem(Input input, Tracker tracker) {
+        System.out.println("=== Delete Item ====");
+        int id = input.askInt("Введите номер заявки, которую необходимо удалить: ");
+        if (tracker.delete(id)) {
+            System.out.println("Удаление заявки произошла успешно");
+        } else {
+            System.out.println("Заявки с указанным номером не существует");
+        }
+    }
+
+    public static void findItemById(Input input, Tracker tracker) {
+        System.out.println("=== Find Item By Id ====");
+        int id = input.askInt("Введите номер заявки, которую необходимо найти: ");
+        Item item = tracker.findById(id);
+        if (item != null) {
+            System.out.println("Имя заявки с номером " + id + " : " + item.getName());
+        } else {
+            System.out.println("Заявки с указанным номером не существует");
+        }
+    }
+
+    public static void findItemName(Input input, Tracker tracker) {
+        System.out.println("=== Find Item By Name ====");
+        String name = input.askStr("Введите имя заявки, которую необходимо найти: ");
+        Item[] rsl = tracker.findByName(name);
+        if (rsl.length > 0) {
+            for (int i = 0; i < rsl.length; i++) {
+                System.out.println(rsl[i]);
+            }
+        } else {
+            System.out.println("Заявки с указанным именем не существуют");
+        }
+    }
+
+        public void init(Input input, Tracker tracker) {
         boolean run = true;
 
         while (run) {
             this.showMenu();
-            int vvod = Integer.parseInt(input.askStr(" "));
+            int vvod = input.askInt(" ");
 
             if (vvod == 0) {
-                String name = input.askStr("Введите имя заявки: ");
-                Item item = new Item(name);
-                tracker.add(item);
+                StartUI.createItem(input, tracker);
                 System.out.println("Заявка успешно заведена");
                 System.out.println();
             } else if (vvod == 1) {
@@ -32,43 +82,16 @@ public class StartUI {
                 }
                 System.out.println();
             } else if (vvod == 2) {
-                int id = input.askInt("Введите номер заявки, " +
-                        "которую необходимо отредактировать: ");
-                String name = input.askStr("Введите новое имя заявки " + id + ": ");
-                Item newItem = new Item(name);
-                if (tracker.replace(id, newItem)) {
-                    System.out.println("Замена заявки произошла успешно");
-                } else {
-                    System.out.println("Заявки с указанным номером не существует");
-                }
+                StartUI.replaceItem(input, tracker);
                 System.out.println();
             } else if (vvod == 3) {
-                int id = input.askInt("Введите номер заявки, которую необходимо удалить: ");
-                if (tracker.delete(id)) {
-                    System.out.println("Удаление заявки произошла успешно");
-                } else {
-                    System.out.println("Заявки с указанным номером не существует");
-                }
+                StartUI.deleteItem(input, tracker);
                 System.out.println();
             } else if (vvod == 4) {
-                int id = input.askInt("Введите номер заявки, которую необходимо найти: ");
-                Item item = tracker.findById(id);
-                if (item != null) {
-                    System.out.println("Имя заявки с номером " + id + " : " + item.getName());
-                } else {
-                    System.out.println("Заявки с указанным номером не существует");
-                }
+                StartUI.findItemById(input, tracker);
                 System.out.println();
             } else if (vvod == 5) {
-                String name = input.askStr("Введите имя заявки, которую необходимо найти: ");
-                Item[] rsl = tracker.findByName(name);
-                if (rsl.length > 0) {
-                    for (int i = 0; i < rsl.length; i++) {
-                        System.out.println(rsl[i]);
-                    }
-                } else {
-                    System.out.println("Заявки с указанным именем не существуют");
-                }
+                StartUI.findItemName(input, tracker);
                 System.out.println();
             } else if (vvod == 6) run = false;
         }
