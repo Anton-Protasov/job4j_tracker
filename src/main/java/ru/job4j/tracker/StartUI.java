@@ -1,7 +1,5 @@
 package ru.job4j.tracker;
 
-import java.util.Scanner;
-
 /*
  * 2.1. Реализация класса StartUI [#395219]
  * консольное приложение для работы с классом ru.job4j.tracker.Tracker
@@ -10,33 +8,33 @@ import java.util.Scanner;
 / 6. Exit Program / Select:
  */
 
+import ru.job4j.oop.Transport;
+
 public class StartUI {
 
-    public void init(Scanner scanner, Tracker tracker) {
+    public void init(Input input, Tracker tracker) {
         boolean run = true;
 
         while (run) {
             this.showMenu();
-            int input = Integer.parseInt(scanner.nextLine());
+            int vvod = Integer.parseInt(input.askStr(" "));
 
-            if (input == 0) {
-                System.out.print("Введите имя заявки: ");
-                String name = scanner.nextLine();
+            if (vvod == 0) {
+                String name = input.askStr("Введите имя заявки: ");
                 Item item = new Item(name);
                 tracker.add(item);
                 System.out.println("Заявка успешно заведена");
                 System.out.println();
-            } else if (input == 1) {
+            } else if (vvod == 1) {
                 Item[] rsl = tracker.findAll();
                 for (int i = 0; i < rsl.length; i++) {
                     System.out.println(rsl[i]);
                 }
                 System.out.println();
-            } else if (input == 2) {
-                System.out.print("Введите номер заявки, которую необходимо отредактировать: ");
-                int id = Integer.parseInt(scanner.nextLine());
-                System.out.print("Введите новое имя заявки " + id + ": ");
-                String name = scanner.nextLine();
+            } else if (vvod == 2) {
+                int id = input.askInt("Введите номер заявки, " +
+                        "которую необходимо отредактировать: ");
+                String name = input.askStr("Введите новое имя заявки " + id + ": ");
                 Item newItem = new Item(name);
                 if (tracker.replace(id, newItem)) {
                     System.out.println("Замена заявки произошла успешно");
@@ -44,18 +42,16 @@ public class StartUI {
                     System.out.println("Заявки с указанным номером не существует");
                 }
                 System.out.println();
-            } else if (input == 3) {
-                System.out.print("Введите номер заявки, которую необходимо удалить: ");
-                int id = Integer.parseInt(scanner.nextLine());
+            } else if (vvod == 3) {
+                int id = input.askInt("Введите номер заявки, которую необходимо удалить: ");
                 if (tracker.delete(id)) {
                     System.out.println("Удаление заявки произошла успешно");
                 } else {
                     System.out.println("Заявки с указанным номером не существует");
                 }
                 System.out.println();
-            } else if (input == 4) {
-                System.out.print("Введите номер заявки, которую необходимо найти: ");
-                int id = Integer.parseInt(scanner.nextLine());
+            } else if (vvod == 4) {
+                int id = input.askInt("Введите номер заявки, которую необходимо найти: ");
                 Item item = tracker.findById(id);
                 if (item != null) {
                     System.out.println("Имя заявки с номером " + id + " : " + item.getName());
@@ -63,9 +59,8 @@ public class StartUI {
                     System.out.println("Заявки с указанным номером не существует");
                 }
                 System.out.println();
-            } else if (input == 5) {
-                System.out.print("Введите имя заявки, которую необходимо найти: ");
-                String name = scanner.nextLine();
+            } else if (vvod == 5) {
+                String name = input.askStr("Введите имя заявки, которую необходимо найти: ");
                 Item[] rsl = tracker.findByName(name);
                 if (rsl.length > 0) {
                     for (int i = 0; i < rsl.length; i++) {
@@ -75,7 +70,7 @@ public class StartUI {
                     System.out.println("Заявки с указанным именем не существуют");
                 }
                 System.out.println();
-            } else if (input == 6) run = false;
+            } else if (vvod == 6) run = false;
         }
     }
 
@@ -93,8 +88,8 @@ public class StartUI {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
-        new StartUI().init(scanner, tracker);
+        new StartUI().init(input, tracker);
     }
 }
