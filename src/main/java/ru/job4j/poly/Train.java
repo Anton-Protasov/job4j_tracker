@@ -10,12 +10,12 @@ public class Train implements Vehicle {
     @Override
     public int fare(int destination) {
         int money = -1;
-        if (100 <= destination || destination < 500) {
+        if (100 <= destination && destination < 500) {
             money = 500;
         }
-        else if (500 <= destination || destination <= 1000) {
+        else if (500 <= destination && destination <= 1000) {
             money = 2000;
-        } else if (1000 < destination || destination <= 5000) {
+        } else if (1000 < destination && destination <= 5000) {
             money = 4000;
         }
         return money;

@@ -15,7 +15,8 @@ public class Transportation {
         Vehicle bus = new Bus(destination);
 
         Vehicle[] vehicles = new Vehicle[]{train, plan, bus};
-        for (Vehicle i : vehicles);
-        i.move();
+        for (Vehicle i : vehicles) {
+            i.move();
+        }
     }
 }

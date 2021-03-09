@@ -10,9 +10,9 @@ public class Plan implements Vehicle {
     @Override
     public int fare(int destination) {
         int money = -1;
-        if (300 <= destination || destination <= 1000) {
+        if (300 <= destination && destination <= 1000) {
             money = 3000;
-        } else if (1000 > destination || destination <= 3000) {
+        } else if (1000 > destination && destination <= 3000) {
             money = 5000;
         } else if (destination > 3000) {
             money = 10000;

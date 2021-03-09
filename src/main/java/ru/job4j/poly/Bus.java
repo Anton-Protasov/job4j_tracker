@@ -13,10 +13,10 @@ public class Bus implements Vehicle {
         if (100 >= destination) {
             money = 300;
         }
-        else if (100 < destination || destination < 500) {
+        else if (100 < destination && destination < 500) {
             money = 400;
         }
-        else if (500 <= destination || destination <= 2000) {
+        else if (500 <= destination && destination <= 2000) {
             money = 3000;
         }
         return money;
