@@ -38,23 +38,10 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = new Item("Deleted item");
         tracker.add(item);
-        String[] answers = {
-                String.valueOf(item.getId()),
-                item.getName()
-        };
+        String[] answers = {String.valueOf(item.getId())};
         StartUI.deleteItem(new StubInput(answers), tracker);
         Item deleted = tracker.findById(item.getId());
         assertThat(deleted, is(nullValue()));
 
-
-        /*
-        Tracker tracker = new Tracker();
-        String[] answers = {"Deleted item"};
-        Input input = new StubInput(answers);
-        StartUI.createItem(input, tracker);
-        StartUI.deleteItem(input, tracker);
-        Item created = tracker.findAll()[0];
-        assertThat(created.getName(), is(nullValue()));
-         */
     }
 }
