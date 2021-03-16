@@ -10,6 +10,7 @@ package ru.job4j.tracker;
 
 public class StartUI {
 
+/*
     public static void createItem(Input input, Tracker tracker) {
         System.out.println("=== Create a new Item ====");
         String name = input.askStr("Введите имя заявки: ");
@@ -97,6 +98,19 @@ public class StartUI {
         }
     }
 
+*/
+
+public void init(Input input, Tracker tracker, UserAction[] actions) {
+    boolean run = true;
+    while (run) {
+        this.showMenu(actions);
+        int select = input.askInt("Select: ");
+        UserAction action = actions[select];
+        run = action.execute(input, tracker);
+    }
+}
+
+/*
     private void showMenu() {
         System.out.println("Menu.");
         System.out.println("0. Add new Item");
@@ -109,10 +123,29 @@ public class StartUI {
         System.out.println();
         System.out.print("Выберите пункт меню: ");
     }
+*/
+
+    private void showMenu(UserAction[] actions) {
+        System.out.println("Menu.");
+        for (int index = 0; index < actions.length; index++) {
+            System.out.println(index + ". " + actions[index].name());
+        }
+    }
+
 
     public static void main(String[] args) {
         Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
-        new StartUI().init(input, tracker);
+//        new StartUI().init(input, tracker);
+        UserAction[] actions = {
+                    new CreateAction(),
+                    new ShowAction(),
+                    new EditAction(),
+                    new DeleteAction(),
+                    new FindActionById(),
+                    new FindActionByName(),
+                    new ExitAction()
+            };
+            new StartUI().init(input, tracker, actions);
     }
 }
