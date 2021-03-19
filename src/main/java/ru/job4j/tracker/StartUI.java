@@ -100,6 +100,12 @@ public class StartUI {
 
 */
 
+    private final Output out;
+
+    public StartUI(Output out) {
+        this.out = out;
+    }
+
 public void init(Input input, Tracker tracker, UserAction[] actions) {
     boolean run = true;
     while (run) {
@@ -126,19 +132,19 @@ public void init(Input input, Tracker tracker, UserAction[] actions) {
 */
 
     private void showMenu(UserAction[] actions) {
-        System.out.println("Menu.");
+        out.println("Menu.");
         for (int index = 0; index < actions.length; index++) {
-            System.out.println(index + ". " + actions[index].name());
+           out.println(index + ". " + actions[index].name());
         }
     }
-
 
     public static void main(String[] args) {
         Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
+        Output output = new ConsoleOutput();
 //        new StartUI().init(input, tracker);
         UserAction[] actions = {
-                    new CreateAction(),
+                    new CreateAction(output),
                     new ShowAction(),
                     new EditAction(),
                     new DeleteAction(),
@@ -146,6 +152,6 @@ public void init(Input input, Tracker tracker, UserAction[] actions) {
                     new FindActionByName(),
                     new ExitAction()
             };
-            new StartUI().init(input, tracker, actions);
+            new StartUI(output).init(input, tracker, actions);
     }
 }
