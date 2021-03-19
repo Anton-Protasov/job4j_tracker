@@ -7,6 +7,8 @@ import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.nullValue;
 
 public class StartUITest {
+
+/*
     @Test
     public void whenAddItem() {
         String[] answers = {"Fix PC"};
@@ -42,6 +44,64 @@ public class StartUITest {
         StartUI.deleteItem(new StubInput(answers), tracker);
         Item deleted = tracker.findById(item.getId());
         assertThat(deleted, is(nullValue()));
+    }
+ */
 
+    @Test
+    /**
+     * Сценарий теста.
+     * 1. Показать меню.
+     * 2. Выбрать пункт "Создание заявки"
+     * 3. Выбрать пункт "Выйти"
+     * 4. Проверить, что в объект Tracker появилась новая заявка с именем "Item name".
+     */
+    public void whenCreateItem() {
+        Input in = new StubInput(
+                new String[] {"0", "Item name", "1"} // 0 - это пункт меню "Создать новую заявку"
+                                                     // "Item name" - это будет имя новой заявки.
+                                                     // 1 - это пункт меню "Выйти".
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new CreateAction(),
+                new ExitAction()
+        };
+        new StartUI().init(in, tracker, actions);
+        assertThat(tracker.findAll()[0].getName(), is("Item name"));
+    }
+
+    @Test
+    public void whenReplaceItem() {
+        Tracker tracker = new Tracker();
+        /* Добавим в tracker новую заявку */
+        Item item = tracker.add(new Item("Replaced item"));
+        /* Входные данные должны содержать ID добавленной заявки item.getId() */
+        String replacedName = "New item name";
+        Input in = new StubInput(
+                new String[] {"0",String.valueOf(item.getId()), replacedName, "1"}
+        );
+        UserAction[] actions = {
+                new EditAction(),
+                new ExitAction()
+        };
+        new StartUI().init(in, tracker, actions);
+        assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
+    }
+
+    @Test
+    public void whenDeleteItem() {
+        Tracker tracker = new Tracker();
+        /* Добавим в tracker новую заявку */
+        Item item = tracker.add(new Item("Deleted item"));
+        /* Входные данные должны содержать ID добавленной заявки item.getId() */
+        Input in = new StubInput(
+                new String[] {"0",String.valueOf(item.getId()), "1"}
+        );
+        UserAction[] actions = {
+                new DeleteAction(),
+                new ExitAction()
+        };
+        new StartUI().init(in, tracker, actions);
+        assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
 }
