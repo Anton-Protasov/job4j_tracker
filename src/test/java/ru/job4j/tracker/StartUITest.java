@@ -128,4 +128,75 @@ public class StartUITest {
                         "0. Exit" + " Program"+System.lineSeparator()
         ));
     }
+
+    @Test
+    public void whenShow() {
+        Tracker tracker = new Tracker();
+        Output out = new StubOutput();
+        Item item = tracker.add(new Item("New item"));
+
+        Input in = new StubInput(
+                new String[] {"0", "1"}
+        );
+        UserAction[] actions = {
+                new ShowAction(out),
+                new ExitAction()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is("Menu." + System.lineSeparator() +
+                "0. Show all items" + System.lineSeparator() +
+                "1. Exit Program" + System.lineSeparator() +
+                item + System.lineSeparator() +
+                "Menu." + System.lineSeparator() +
+                "0. Show all items" + System.lineSeparator() +
+                "1. Exit Program" + System.lineSeparator()));
+    }
+
+    @Test
+    public void whenFindByNameAction() {
+        Tracker tracker = new Tracker();
+        Output out = new StubOutput();
+        Item item = tracker.add(new Item("New item"));
+
+        Input in = new StubInput(
+                new String[] {"0", item.getName(), "1"}
+        );
+        UserAction[] actions = {
+                new FindActionByName(out),
+                new ExitAction()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is("Menu." + System.lineSeparator() +
+                "0. Find items by name" + System.lineSeparator() +
+                "1. Exit Program" + System.lineSeparator() +
+                "=== Find Item By Name ====" + System.lineSeparator() +
+                item + System.lineSeparator() +
+                "Menu." + System.lineSeparator() +
+                "0. Find items by name" + System.lineSeparator() +
+                "1. Exit Program" + System.lineSeparator()));
+    }
+
+    @Test
+    public void whenFindByIDAction() {
+        Tracker tracker = new Tracker();
+        Output out = new StubOutput();
+        Item item = tracker.add(new Item("New item"));
+
+        Input in = new StubInput(
+                new String[] {"0", String.valueOf(item.getId()), "1"}
+        );
+        UserAction[] actions = {
+                new FindActionById(out),
+                new ExitAction()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is("Menu." + System.lineSeparator() +
+                "0. Find item by Id" + System.lineSeparator() +
+                "1. Exit Program" + System.lineSeparator() +
+                "=== Find Item By Id ====" + System.lineSeparator() +
+                item + System.lineSeparator() +
+                "Menu." + System.lineSeparator() +
+                "0. Find item by Id" + System.lineSeparator() +
+                "1. Exit Program" + System.lineSeparator()));
+    }
 }

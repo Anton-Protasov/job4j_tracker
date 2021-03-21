@@ -18,7 +18,7 @@ public class FindActionByName implements UserAction{
         Item[] rsl = tracker.findByName(name);
         if (rsl.length > 0) {
             for (int i = 0; i < rsl.length; i++) {
-                System.out.println(rsl[i]);
+                out.println(rsl[i]);
             }
         } else {
             out.println("Заявки с указанным именем не существуют");
