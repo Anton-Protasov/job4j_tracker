@@ -145,11 +145,11 @@ public void init(Input input, Tracker tracker, UserAction[] actions) {
 //        new StartUI().init(input, tracker);
         UserAction[] actions = {
                     new CreateAction(output),
-                    new ShowAction(),
-                    new EditAction(),
-                    new DeleteAction(),
-                    new FindActionById(),
-                    new FindActionByName(),
+                    new ShowAction(output),
+                    new EditAction(output),
+                    new DeleteAction(output),
+                    new FindActionById(output),
+                    new FindActionByName(output),
                     new ExitAction()
             };
             new StartUI(output).init(input, tracker, actions);
