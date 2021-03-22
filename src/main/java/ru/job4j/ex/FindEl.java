@@ -11,12 +11,12 @@ public class FindEl {
             if (key.equals(value[i])) {
                 rsl = i;
                 break;
-        }
             }
-        return rsl;
+        }
         if (rsl == -1) {
             throw new ElementNotFoundException ("Element has not found");
         }
+        return rsl;
     }
 
     public static void main(String[] args) {
