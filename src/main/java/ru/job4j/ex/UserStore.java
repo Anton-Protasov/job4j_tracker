@@ -23,10 +23,11 @@ public class UserStore {
     }
 
     public static boolean validate(User user) throws UserInvalidException {
-        if(!user.isValid() || user.getUsername().length() < 3) {
+        if (user.isValid() && user.getUsername().length() >= 3) {
+            return true;
+        } else {
             throw new UserInvalidException("User invalid");
         }
-        return true;
     }
 
     public static void main(String[] args) {
