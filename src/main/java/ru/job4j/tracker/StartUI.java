@@ -143,9 +143,9 @@ public void init(Input input, Tracker tracker, UserAction[] actions) {
     }
 
     public static void main(String[] args) {
-        Input input = new ValidateInput();
         Tracker tracker = new Tracker();
         Output output = new ConsoleOutput();
+        Input input = new ValidateInput(output, new ConsoleInput());
 //        new StartUI().init(input, tracker);
         UserAction[] actions = {
                     new CreateAction(output),
