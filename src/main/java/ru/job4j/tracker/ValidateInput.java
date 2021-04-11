@@ -14,6 +14,30 @@ public class ValidateInput implements Input {
         return in.askStr(question);
     }
 
+/**
+ *    Option 1.
+ *    We will use Unchecked Exceptions (NumberFormatException) as Handle type
+ */
+
+public int askInt(String question){
+    boolean invaild = true;
+    int value = -1;
+    do {
+        try {
+            value = in.askInt(question);
+            invaild = false;
+        } catch (NumberFormatException nfe) {
+            out.println("You entered invalidate data. Please enter validate data.");
+        }
+    } while (invaild);
+    return value;
+    }
+}
+
+/**
+ *    Option 2.
+ *    with additional check that is redundant
+
     private boolean isNumber(String value) {
         boolean rsl = true;
         char[] check = value.toCharArray();
@@ -42,4 +66,5 @@ public class ValidateInput implements Input {
         } while (invalid);
         return value;
     }
-}
+    }
+ */
