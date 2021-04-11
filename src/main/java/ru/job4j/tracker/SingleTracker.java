@@ -39,3 +39,4 @@ public final class SingleTracker {
         return example = new SingleTracker();
     }
 }
+
