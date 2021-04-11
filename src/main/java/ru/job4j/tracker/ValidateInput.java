@@ -20,16 +20,16 @@ public class ValidateInput implements Input {
  */
 
 public int askInt(String question){
-    boolean invaild = true;
+    boolean invalid = true;
     int value = -1;
     do {
         try {
             value = in.askInt(question);
-            invaild = false;
+            invalid = false;
         } catch (NumberFormatException nfe) {
             out.println("You entered invalidate data. Please enter validate data.");
         }
-    } while (invaild);
+    } while (invalid);
     return value;
     }
 }
