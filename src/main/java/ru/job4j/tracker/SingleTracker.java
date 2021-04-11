@@ -4,7 +4,7 @@ package ru.job4j.tracker;
  *  класс SingleTracker должен реализовывать шаблон singleton
  */
 
-public class SingleTracker {
+public final class SingleTracker {
     private Tracker tracker = new Tracker();
     private static SingleTracker example;
 
