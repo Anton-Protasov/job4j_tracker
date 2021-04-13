@@ -2,13 +2,21 @@ package ru.job4j.tracker;
 
 /**
  *  класс SingleTracker должен реализовывать шаблон singleton
+ *  Этот класс должен реализовывать все методы от класса Tracker.
  */
 
 public final class SingleTracker {
     private Tracker tracker = new Tracker();
-    private static SingleTracker example;
+    private static SingleTracker example = null;
 
     private SingleTracker(){
+    }
+
+    public static SingleTracker getExample(){
+        if (example == null) {
+            example = new SingleTracker();
+        }
+        return example;
     }
 
     public Item add(Item item) {
@@ -33,10 +41,6 @@ public final class SingleTracker {
 
     public boolean delete(int id){
         return tracker.delete(id);
-    }
-
-    public static SingleTracker getExample() {
-        return example = new SingleTracker();
     }
 }
 
