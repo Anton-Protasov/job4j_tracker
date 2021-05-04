@@ -1,5 +1,7 @@
 package ru.job4j.search;
 
+import java.util.Objects;
+
 /**
  * 2. Очередь с приоритетом на LinkedList [#395187]
  */
@@ -19,5 +21,13 @@ public class Task {
 
     public int getPriority() {
         return priority;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "desc='" + desc + '\'' +
+                ", priority=" + priority +
+                '}';
     }
 }

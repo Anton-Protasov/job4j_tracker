@@ -22,13 +22,12 @@ public class PriorityQueue {
     public void put(Task task) {
         int index = 0;
         for (Task element : tasks) {
-            if (tasks.size() != 0 && task.getPriority() > element.getPriority()) {
+            while (task.getPriority() > element.getPriority()) {
                 index++;
-            } else {
                 break;
             }
         }
-            this.tasks.add(index, task);
+        this.tasks.add(index, task);
     }
 
     /**
@@ -37,5 +36,14 @@ public class PriorityQueue {
      */
     public Task take() {
         return tasks.poll();
+    }
+
+    public static void main(String[] args) {
+        PriorityQueue ex = new PriorityQueue();
+        ex.put(new Task("A", 3));
+        ex.put(new Task("B", 1));
+        ex.put(new Task("C", 10));
+        for(Task el: ex.tasks)
+        System.out.println(el);
     }
 }
