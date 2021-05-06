@@ -22,12 +22,12 @@ public class PriorityQueue {
     public void put(Task task) {
         int index = 0;
         for (Task element : tasks) {
-            while (task.getPriority() > element.getPriority()) {
-                index++;
+            if (element.getPriority() > task.getPriority()) {
+                this.tasks.add(index, task);
                 break;
             }
+            index++;
         }
-        this.tasks.add(index, task);
     }
 
     /**
