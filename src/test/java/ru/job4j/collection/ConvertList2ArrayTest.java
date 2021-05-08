@@ -8,6 +8,10 @@ import java.util.Arrays;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+/**
+ * 3. Тест на конвертацию ArrayList в двухмерный массив [#395189]
+ */
+
 @Ignore
 public class ConvertList2ArrayTest {
     @Test
