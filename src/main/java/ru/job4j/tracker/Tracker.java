@@ -1,6 +1,9 @@
 package ru.job4j.tracker;
 
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /*
  * 5. Tracker - хранилище [#395287]
@@ -33,20 +36,30 @@ import java.util.Arrays;
  */
 
 public class Tracker {
-    private final Item[] items = new Item[100];
-    private int ids = 1;
-    private int size = 0;
+    private final List<Item> items = new ArrayList<Item>();
+//    private final Item[] items = new Item[100];
+//    private int ids = 1;
+//    private int size = 0;
 
     public Item add(Item item) {
+        items.add(item);
+        /*
         item.setId(ids++);
         items[size++] = item;
+         */
         return item;
     }
 
+    /*
     public Item[] findAll() {
         return Arrays.copyOf(items, size);
     }
+     */
+    public List<Item> findAll() {
+        return items;
+    }
 
+    /*
     public Item[] findByName(String key) {
         int size2 = 0;
         Item[] rsl = new Item[items.length];
@@ -59,6 +72,18 @@ public class Tracker {
         }
         return Arrays.copyOf(rsl, size2);
     }
+     */
+    public List<Item> findByName(String key) {
+        List<Item> rsl = new ArrayList<Item>();
+        for (Item item : items) {
+            if (item.getName().equals(key)) {
+                rsl.add(item);
+            }
+        }
+        return rsl;
+    }
+
+
 
     public Item findById(int id) {
         /* Данная часть программы из задачи 5 при реализации задачи 6 преобразована
@@ -73,9 +98,11 @@ public class Tracker {
         return rsl;
          */
         int index = indexOf(id);
-        return index != -1 ? items[index] : null;
+     //   return index != -1 ? items[index] : null;
+        return index != -1 ? items.get(id) : null;
     }
 
+    /*
     private int indexOf(int id) {
         int rsl = -1;
         for (int index = 0; index < size; index++) {
@@ -86,7 +113,22 @@ public class Tracker {
         }
         return rsl;
     }
+     */
 
+    private int indexOf(int id) {
+        int rsl = -1;
+        int index = -1;
+        for (Item item : items) {
+            index++;
+            if (item.getId() == id) {
+                rsl = index;
+                break;
+            }
+        }
+        return rsl;
+    }
+
+        /*
     public boolean replace(int id, Item item) {
         int index = indexOf(id);
         boolean rsl = false;
@@ -97,6 +139,18 @@ public class Tracker {
         }
         return rsl;
     }
+         */
+
+        public boolean replace(int id, Item item) {
+            int index = indexOf(id);
+            boolean rsl = false;
+            if (index != -1) {
+                items.remove(index);
+                items.add(index, item);
+                rsl = true;
+            }
+            return rsl;
+        }
 
     /* Применим метод System.arraycopy(Arrays1, start, Arrays2, distPos, length);
     Arrays1 - массив откуда копируем набор элементов в количестве length
@@ -107,7 +161,6 @@ public class Tracker {
     В ставляем их начиная с index
     Так же в конце нам нужно обнулить последнюю ячейку, так как она будет заполнена последним элементов,
     а мы элементы сдвинули
-     */
 
     public boolean delete(int id) {
         boolean rsl = false;
@@ -120,6 +173,16 @@ public class Tracker {
             System.arraycopy(items, start, items, distPos, length);
             items[size - 1] = null;
             size--;
+            rsl = true;
+        }
+        return rsl;
+    }
+     */
+    public boolean delete(int id) {
+        boolean rsl = false;
+        int index = indexOf(id);
+        if(index != -1) {
+            items.remove(index);
             rsl = true;
         }
         return rsl;

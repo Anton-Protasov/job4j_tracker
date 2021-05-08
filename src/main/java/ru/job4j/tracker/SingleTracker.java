@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *  класс SingleTracker должен реализовывать шаблон singleton
  *  Этот класс должен реализовывать все методы от класса Tracker.
@@ -27,11 +30,21 @@ public final class SingleTracker {
         return tracker.findById(id);
     }
 
+    /*
     public Item[] findAll() {
         return tracker.findAll();
     }
+    */
+    public List<Item> findAll() {
+        return tracker.findAll();
+    }
 
+    /*
     public Item[] findByName(String key){
+        return tracker.findByName(key);
+    }
+     */
+    public List<Item> findByName(String key){
         return tracker.findByName(key);
     }
 
