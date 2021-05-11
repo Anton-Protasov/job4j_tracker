@@ -38,15 +38,13 @@ import java.util.List;
 public class Tracker {
     private final List<Item> items = new ArrayList<Item>();
 //    private final Item[] items = new Item[100];
-//    private int ids = 1;
+      private int ids = 1;
 //    private int size = 0;
 
     public Item add(Item item) {
-        items.add(item);
-        /*
         item.setId(ids++);
-        items[size++] = item;
-         */
+        items.add(item);
+//        items[size++] = item;
         return item;
     }
 
@@ -56,7 +54,7 @@ public class Tracker {
     }
      */
     public List<Item> findAll() {
-        return items;
+        return List.copyOf(items);
     }
 
     /*
@@ -102,25 +100,10 @@ public class Tracker {
         return index != -1 ? items.get(id) : null;
     }
 
-    /*
     private int indexOf(int id) {
         int rsl = -1;
-        for (int index = 0; index < size; index++) {
-            if (items[index].getId() == id) {
-                rsl = index;
-                break;
-            }
-        }
-        return rsl;
-    }
-     */
-
-    private int indexOf(int id) {
-        int rsl = -1;
-        int index = -1;
-        for (Item item : items) {
-            index++;
-            if (item.getId() == id) {
+        for (int index = 0; index < items.size(); index++) {
+            if (items.get(index).getId() == id) {
                 rsl = index;
                 break;
             }
@@ -145,8 +128,7 @@ public class Tracker {
             int index = indexOf(id);
             boolean rsl = false;
             if (index != -1) {
-                items.remove(index);
-                items.add(index, item);
+                items.set(id, item);
                 rsl = true;
             }
             return rsl;
