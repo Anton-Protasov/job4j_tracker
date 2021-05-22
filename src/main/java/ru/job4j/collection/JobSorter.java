@@ -14,12 +14,16 @@ public class JobSorter {
         List<Job> jobs = Arrays.asList(
                 new Job("Fix bugs", 4),
                 new Job("Impl task", 2),
-                new Job("Reboot server", 1)
+                new Job("Reboot server", 1),
+                new Job("Mechanic", 7),
+                new Job("Electric", 0)
         );
         System.out.println(jobs);
         Collections.sort(jobs);
         System.out.println(jobs);
-        Collections.sort(jobs, new SortByNameJob());
+        Collections.sort(jobs, new SortByNameJobNO());
+        System.out.println(jobs);
+        Collections.sort(jobs, new SortByNameJobRO());
         System.out.println(jobs);
     }
 }
