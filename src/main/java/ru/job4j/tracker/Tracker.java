@@ -1,8 +1,6 @@
 package ru.job4j.tracker;
 
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 /*
@@ -168,5 +166,15 @@ public class Tracker {
             rsl = true;
         }
         return rsl;
+    }
+
+    public List<Item> naturalOrder(){
+        Comparator no = new NaturalOrderItems();
+        return Collections.sort(items, no);
+    }
+
+    public List<Item> reversOrder(){
+        Comparator ro = new ReverseOrderItems();
+        return Collections.sort(items, ro);
     }
 }

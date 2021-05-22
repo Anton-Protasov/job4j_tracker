@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /*
@@ -159,6 +160,8 @@ public void init(Input input, Tracker tracker, List<UserAction> actions) {
 
     public static void main(String[] args) {
         Tracker tracker = new Tracker();
+        tracker.naturalOrder();
+        tracker.reversOrder();
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
 //        new StartUI().init(input, tracker);
