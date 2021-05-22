@@ -43,4 +43,26 @@ public class BankServiceTest {
         bank.transferMoney(user.getPassport(), "5546", user.getPassport(), "113", 150D);
         assertThat(bank.findByRequisite(user.getPassport(), "113").getBalance(), is(200D));
     }
+
+    @Test
+    public void transferMoneyNotEnough() {
+        User user = new User("3434", "Petr Arsentev");
+        BankService bank = new BankService();
+        bank.addUser(user);
+        bank.addAccount(user.getPassport(), new Account("5546", 150D));
+        bank.addAccount(user.getPassport(), new Account("113", 50D));
+        bank.transferMoney(user.getPassport(), "5546", user.getPassport(), "113", 200D);
+        assertThat(bank.findByRequisite(user.getPassport(), "113").getBalance(), is(50D));
+    }
+
+    @Test (expected = NullPointerException.class)
+    public void transferMoneyNotAvailable() {
+        User user1 = new User("3434", "Petr Arsentev");
+        User user2 = null;
+        BankService bank = new BankService();
+        bank.addUser(user1);
+        bank.addUser(user2);
+        bank.addAccount(user1.getPassport(), new Account("5546", 150D));
+        bank.addAccount(user2.getPassport(), new Account("113", 50D));
+    }
 }
