@@ -11,6 +11,6 @@ public class ReverseOrderItems implements Comparator <Item> {
 
     @Override
     public int compare(Item first, Item second) {
-        return second.getId() - first.getId();
+        return Integer.compare(first.getId(), second.getId());
     }
 }
