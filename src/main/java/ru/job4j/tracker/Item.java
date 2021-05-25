@@ -10,7 +10,9 @@ package ru.job4j.tracker;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.Objects;
+import java.util.List;
 
 public class Item {
     private int id;
@@ -25,6 +27,11 @@ public class Item {
     }
 
     public Item(String name){
+        this.name = name;
+    }
+
+    public Item(int id, String name){
+        this.id = id;
         this.name = name;
     }
 
@@ -73,5 +80,11 @@ public class Item {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    public List<Item> natOrd (List<Item> list) {
+        NaturalOrderItems no = new NaturalOrderItems();
+        Collections.sort(list,no);
+        return list;
     }
 }
