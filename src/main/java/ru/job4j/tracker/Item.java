@@ -81,10 +81,4 @@ public class Item {
                 ", name='" + name + '\'' +
                 '}';
     }
-
-    public List<Item> natOrd (List<Item> list) {
-        NaturalOrderItems no = new NaturalOrderItems();
-        Collections.sort(list,no);
-        return list;
-    }
 }

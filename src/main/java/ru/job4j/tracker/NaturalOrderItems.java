@@ -14,3 +14,4 @@ public class NaturalOrderItems implements Comparator <Item> {
         return Integer.compare(first.getId(), second.getId());
     }
 }
+
