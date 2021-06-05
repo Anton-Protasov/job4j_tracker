@@ -23,10 +23,9 @@ public class StringCompare implements Comparator<String> {
             if (compareRslChar != 0) {
                 rsl = compareRslChar;
                 break;
+            } else {
+                rsl = Integer.compare(left.length(), right.length());
             }
-        }
-        if (rsl == 0) {
-            rsl = Integer.compare(left.length(), right.length());
         }
         return rsl;
     }
