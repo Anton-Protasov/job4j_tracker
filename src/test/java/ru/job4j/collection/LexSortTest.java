@@ -21,4 +21,22 @@ public class LexSortTest {
         Arrays.sort(input, new LexSort());
         assertThat(input, is(out));
     }
+
+    @Test
+    public void sortAnotherNum() {
+        String[] input = {
+                "10.4.7 Task.",
+                "01.100.3 Task.",
+                "2.12.32.1 Task.",
+                "01.100.3.10 Task."
+        };
+        String[] out = {
+                "01.100.3 Task.",
+                "01.100.3.10 Task.",
+                "2.12.32.1 Task.",
+                "10.4.7 Task."
+        };
+        Arrays.sort(input, new LexSort());
+        assertThat(input, is(out));
+    }
 }
