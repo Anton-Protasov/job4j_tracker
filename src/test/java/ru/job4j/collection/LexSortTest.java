@@ -22,3 +22,4 @@ public class LexSortTest {
         assertThat(input, is(out));
     }
 }
+
