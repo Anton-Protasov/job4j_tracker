@@ -9,7 +9,7 @@ import java.util.Comparator;
 
 public class JobSortByNameRevers implements Comparator<Job> {
     @Override
-    public int compare(Job ob1, Job ob2){
+    public int compare(Job ob1, Job ob2) {
         return ob2.getName().compareTo(ob1.getName());
     }
 }

@@ -5,7 +5,8 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 /**
- * Тест whenInvalidInput проверяет ситуацию, когда пользователь ввел сначала неверные данные, а потом верные.
+ * Тест whenInvalidInput проверяет ситуацию,
+ * когда пользователь ввел сначала неверные данные, а потом верные.
  */
 
 public class ValidateInputTest {

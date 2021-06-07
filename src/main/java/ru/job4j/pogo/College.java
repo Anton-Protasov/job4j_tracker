@@ -10,7 +10,8 @@ public class College {
         student.setGroupNumber("E156TR");
         student.setDate(new Date());
 
-        System.out.println(student.getSurname() + " " + student.getName() + " " + student.getMidlname());
+        System.out.println(student.getSurname() + " " + student.getName() + " "
+                + student.getMidlname());
         System.out.println("Группа " + student.getGroupNumber());
         System.out.println("Год поступления: " + student.getDate());
     }

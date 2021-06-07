@@ -14,7 +14,7 @@ public class FindEl {
             }
         }
         if (rsl == -1) {
-            throw new ElementNotFoundException ("Element has not found");
+            throw new ElementNotFoundException("Element has not found");
         }
         return rsl;
     }
@@ -25,6 +25,8 @@ public class FindEl {
             indexOf(value, "no");
         } catch (ElementNotFoundException e) {
             e.printStackTrace();
+//          System.out.println(e); // тоже самое, что и e.printStackTrace();
         }
+        System.out.println("Конец программы");
     }
 }

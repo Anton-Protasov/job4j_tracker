@@ -99,7 +99,8 @@ public class JobTest {
 
     @Test
     public void whenCompatorByNameAndPrority() {
-        Comparator<Job> cmpNamePriority = new JobSortByName().thenComparing(new JobSortByPriority());
+        Comparator<Job> cmpNamePriority =
+                new JobSortByName().thenComparing(new JobSortByPriority());
         int rsl = cmpNamePriority.compare(
                 new Job("Impl task", 0),
                 new Job("Fix bug", 1)
@@ -109,7 +110,8 @@ public class JobTest {
 
     @Test
     public void whenCompatorByProrityWithEqualNames() {
-        Comparator<Job> cmpNamePriority = new JobSortByName().thenComparing(new JobSortByPriority());
+        Comparator<Job> cmpNamePriority =
+                new JobSortByName().thenComparing(new JobSortByPriority());
         int rsl = cmpNamePriority.compare(
                 new Job("Fix bug", 0),
                 new Job("Fix bug", 1)

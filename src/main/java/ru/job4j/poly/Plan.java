@@ -24,8 +24,8 @@ public class Plan implements Vehicle {
     public void move() {
         int rsl = this.fare(destination);
         if (rsl == -1) {
-            System.out.println("Это слишеом маленькое расстояние для самолета." +
-                    "Выберите другой вид странспорта");
+            System.out.println("Это слишеом маленькое расстояние для самолета."
+                    + "Выберите другой вид странспорта");
         } else {
             System.out.println("Стоимость проезда на самолете обойдется в: " + rsl + " рублей");
         }

@@ -9,13 +9,13 @@ import java.util.List;
  */
 
 public final class SingleTracker {
-    private Tracker tracker = new Tracker();
     private static SingleTracker example = null;
+    private Tracker tracker = new Tracker();
 
-    private SingleTracker(){
+    private SingleTracker() {
     }
 
-    public static SingleTracker getExample(){
+    public static SingleTracker getExample() {
         if (example == null) {
             example = new SingleTracker();
         }
@@ -44,15 +44,15 @@ public final class SingleTracker {
         return tracker.findByName(key);
     }
      */
-    public List<Item> findByName(String key){
+    public List<Item> findByName(String key) {
         return tracker.findByName(key);
     }
 
-    public boolean replace(int id, Item item){
+    public boolean replace(int id, Item item) {
         return tracker.replace(id, item);
     }
 
-    public boolean delete(int id){
+    public boolean delete(int id) {
         return tracker.delete(id);
     }
 }

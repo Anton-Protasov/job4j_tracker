@@ -15,25 +15,25 @@ public class StartUITest {
     @Test
     public void whenAddItem() {
         String[] answers = {"Fix PC"};
-        Input input = new StubInput(answers);                  //Создаем объект input. input - массив с атрибутами заявки
-        Tracker tracker = new Tracker();                       //Создаем объект tracker.
-        StartUI.createItem(input, tracker);                    //Заводим заявку в tracker.
-        Item created = tracker.findAll()[0];                   //Создаем переменную create, которой присваиваем результат поиска заявки с индексом [0]
-        Item expected = new Item("Fix PC");              //Создаем заявку с ожидаемыми ответами.
+        Input input = new StubInput(answers);
+        Tracker tracker = new Tracker();
+        StartUI.createItem(input, tracker);
+        Item created = tracker.findAll()[0];
+        Item expected = new Item("Fix PC");
         assertThat(created.getName(), is(expected.getName()));
     }
 
     @Test
     public void whenReplaceItem() {
-        Tracker tracker = new Tracker();                              //Создаем объект tracker.
-        Item item = new Item("new item");                       //Создаем объект item
-        tracker.add(item);                                            //Добавляем item в tracker. После этой операции у нас есть id.
-        String[] answers = {                                          //Создаем массив замены:
-                String.valueOf(item.getId()),                         //Получаем {"1", "replaced item"}
-                "replaced item"                                       //answers[0] = "1"; answers[1] = "replaced item"
+        Tracker tracker = new Tracker();
+        Item item = new Item("new item");
+        tracker.add(item);
+        String[] answers = {
+                String.valueOf(item.getId()),
+                "replaced item"
         };
-        StartUI.replaceItem(new StubInput(answers), tracker);         //Вызываем тестируемый метод. Не понятно что здесь происходит ((
-        Item replaced = tracker.findById(item.getId());               //Ищем по item.id замененный item в объекте tracker
+        StartUI.replaceItem(new StubInput(answers), tracker);
+        Item replaced = tracker.findById(item.getId());
         assertThat(replaced.getName(), is("replaced item"));
     }
 
@@ -62,9 +62,10 @@ public class StartUITest {
     @Test
     public void whenCreateItem() {
         Input in = new StubInput(
-                new String[] {"0", "Item name", "1"} // 0 - это пункт меню "Создать новую заявку"
-                                                     // "Item name" - это будет имя новой заявки.
-                                                     // 1 - это пункт меню "Выйти".
+                new String[] {"0", "Item name", "1"}
+                // 0 - это пункт меню "Создать новую заявку"
+                // "Item name" - это будет имя новой заявки.
+                // 1 - это пункт меню "Выйти".
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = {
@@ -144,8 +145,8 @@ public class StartUITest {
         );
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + System.lineSeparator() +
-                        "0. Exit" + " Program"+System.lineSeparator()
+                "Menu." + System.lineSeparator()
+                        + "0. Exit" + " Program" + System.lineSeparator()
         ));
     }
 
@@ -187,13 +188,13 @@ public class StartUITest {
                 new ExitAction()
         );
         new StartUI(out).init(in, tracker, actions);
-        assertThat(out.toString(), is("Menu." + System.lineSeparator() +
-                "0. Show all items" + System.lineSeparator() +
-                "1. Exit Program" + System.lineSeparator() +
-                item + System.lineSeparator() +
-                "Menu." + System.lineSeparator() +
-                "0. Show all items" + System.lineSeparator() +
-                "1. Exit Program" + System.lineSeparator()));
+        assertThat(out.toString(), is("Menu." + System.lineSeparator()
+                + "0. Show all items" + System.lineSeparator()
+                + "1. Exit Program" + System.lineSeparator()
+                + item + System.lineSeparator()
+                + "Menu." + System.lineSeparator()
+                + "0. Show all items" + System.lineSeparator()
+                + "1. Exit Program" + System.lineSeparator()));
     }
 /*
     @Test
@@ -234,14 +235,14 @@ public class StartUITest {
                 new ExitAction()
         );
         new StartUI(out).init(in, tracker, actions);
-        assertThat(out.toString(), is("Menu." + System.lineSeparator() +
-                "0. Find items by name" + System.lineSeparator() +
-                "1. Exit Program" + System.lineSeparator() +
-                "=== Find Item By Name ====" + System.lineSeparator() +
-                item + System.lineSeparator() +
-                "Menu." + System.lineSeparator() +
-                "0. Find items by name" + System.lineSeparator() +
-                "1. Exit Program" + System.lineSeparator()));
+        assertThat(out.toString(), is("Menu." + System.lineSeparator()
+                + "0. Find items by name" + System.lineSeparator()
+                + "1. Exit Program" + System.lineSeparator()
+                + "=== Find Item By Name ====" + System.lineSeparator()
+                + item + System.lineSeparator()
+                + "Menu." + System.lineSeparator()
+                + "0. Find items by name" + System.lineSeparator()
+                + "1. Exit Program" + System.lineSeparator()));
     }
 /*
     @Test
@@ -282,14 +283,14 @@ public class StartUITest {
                 new ExitAction()
         );
         new StartUI(out).init(in, tracker, actions);
-        assertThat(out.toString(), is("Menu." + System.lineSeparator() +
-                "0. Find item by Id" + System.lineSeparator() +
-                "1. Exit Program" + System.lineSeparator() +
-                "=== Find Item By Id ====" + System.lineSeparator() +
-                item + System.lineSeparator() +
-                "Menu." + System.lineSeparator() +
-                "0. Find item by Id" + System.lineSeparator() +
-                "1. Exit Program" + System.lineSeparator()));
+        assertThat(out.toString(), is("Menu." + System.lineSeparator()
+                + "0. Find item by Id" + System.lineSeparator()
+                + "1. Exit Program" + System.lineSeparator()
+                + "=== Find Item By Id ====" + System.lineSeparator()
+                + item + System.lineSeparator()
+                + "Menu." + System.lineSeparator()
+                + "0. Find item by Id" + System.lineSeparator()
+                + "1. Exit Program" + System.lineSeparator()));
     }
 /*
     @Test
@@ -314,6 +315,7 @@ public class StartUITest {
         );
     }
  */
+
     @Test
     public void whenInvalidExit() {
         Output out = new StubOutput();

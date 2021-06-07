@@ -4,9 +4,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-/**
+/*
  * 0. Сортировка [example]
- * Реализует сортировку по возрастанию по полю priority, а так же сделать сортировку по имени по возрастанию.
+ * Реализует сортировку по возрастанию по полю priority,
+ * а так же сделать сортировку по имени по возрастанию.
  */
 
 public class JobSorter {

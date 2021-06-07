@@ -13,7 +13,7 @@ public class UsageHashSet {
         autos.add("BMV");
         autos.add("Volvo");
         autos.add("Toyota");
-        for(String name: autos) {
+        for (String name: autos) {
             System.out.println(name);
         }
     }

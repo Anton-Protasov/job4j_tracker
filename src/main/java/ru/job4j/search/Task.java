@@ -25,9 +25,9 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" +
-                "desc='" + desc + '\'' +
-                ", priority=" + priority +
-                '}';
+        return "Task{"
+                + "desc='" + desc + '\''
+                + ", priority=" + priority
+                + '}';
     }
 }

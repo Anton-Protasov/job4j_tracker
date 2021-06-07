@@ -22,20 +22,20 @@ public class Item {
     public Item() {
     }
 
-    public Item(int id){
+    public Item(int id) {
         this.id = id;
     }
 
-    public Item(String name){
+    public Item(String name) {
         this.name = name;
     }
 
-    public Item(int id, String name){
+    public Item(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Item(LocalDateTime created){
+    public Item(LocalDateTime created) {
         this.created = created;
     }
 
@@ -61,12 +61,16 @@ public class Item {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Item item = (Item) o;
-        return id == item.id &&
-                Objects.equals(name, item.name) &&
-                Objects.equals(created, item.created);
+        return id == item.id
+                && Objects.equals(name, item.name)
+                && Objects.equals(created, item.created);
     }
 
     @Override
@@ -76,9 +80,9 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return "Item{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + '}';
     }
 }

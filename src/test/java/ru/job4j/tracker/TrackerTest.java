@@ -51,21 +51,21 @@ public class TrackerTest {
     public void whenSortItemsByNaturalOrder() {
         NaturalOrderItems no = new NaturalOrderItems();
         List<Item> items = new ArrayList<>();
-        items.add(new Item(1,"Anton"));
-        items.add(new Item(2,"Boris"));
-        items.add(new Item(3,"Vova"));
-        items.add(new Item(4,"Gena"));
-        items.add(new Item(5,"Dima"));
+        items.add(new Item(1, "Anton"));
+        items.add(new Item(2, "Boris"));
+        items.add(new Item(3, "Vova"));
+        items.add(new Item(4, "Gena"));
+        items.add(new Item(5, "Dima"));
 
         Collections.sort(items, no);
 
         List<Item> expected = new ArrayList<>(
                 Arrays.asList(
-                        new Item(1,"Anton"),
-                        new Item(2,"Boris"),
-                        new Item(3,"Vova"),
-                        new Item(4,"Gena"),
-                        new Item(5,"Dima")));
+                        new Item(1, "Anton"),
+                        new Item(2, "Boris"),
+                        new Item(3, "Vova"),
+                        new Item(4, "Gena"),
+                        new Item(5, "Dima")));
 
         assertThat(items, is(expected));
     }
@@ -74,21 +74,21 @@ public class TrackerTest {
     public void whenSortItemsByReverseOrder() {
         ReverseOrderItems ro = new ReverseOrderItems();
         List<Item> items = new ArrayList<>();
-        items.add(new Item(1,"Anton"));
-        items.add(new Item(2,"Boris"));
-        items.add(new Item(3,"Vova"));
-        items.add(new Item(4,"Gena"));
-        items.add(new Item(5,"Dima"));
+        items.add(new Item(1, "Anton"));
+        items.add(new Item(2, "Boris"));
+        items.add(new Item(3, "Vova"));
+        items.add(new Item(4, "Gena"));
+        items.add(new Item(5, "Dima"));
 
         Collections.sort(items, ro);
 
         List<Item> expected = new ArrayList<>(
                 Arrays.asList(
-                        new Item(5,"Dima"),
-                        new Item(4,"Gena"),
-                        new Item(3,"Vova"),
-                        new Item(2,"Boris"),
-                        new Item(1,"Anton")));
+                        new Item(5, "Dima"),
+                        new Item(4, "Gena"),
+                        new Item(3, "Vova"),
+                        new Item(2, "Boris"),
+                        new Item(1, "Anton")));
 
         assertThat(items, is(expected));
     }

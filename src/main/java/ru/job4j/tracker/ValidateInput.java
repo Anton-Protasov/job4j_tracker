@@ -19,7 +19,7 @@ public class ValidateInput implements Input {
  *    We will use Unchecked Exceptions (NumberFormatException) as Handle type
  */
 
-public int askInt(String question){
+public int askInt(String question) {
     boolean invalid = true;
     int value = -1;
     do {

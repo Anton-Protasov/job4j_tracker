@@ -3,19 +3,21 @@ package ru.job4j.tracker;
 import java.util.List;
 import java.util.ArrayList;
 
-public class FindActionByName implements UserAction{
+public class FindActionByName implements UserAction {
 
     private final Output out;
 
     public FindActionByName(Output out) {
         this.out = out;
     }
+
     @Override
     public String name() {
         return "Find items by name";
     }
+
     @Override
-    public boolean execute(Input input, Tracker tracker){
+    public boolean execute(Input input, Tracker tracker) {
         out.println("=== Find Item By Name ====");
         String name = input.askStr("Введите имя заявки, которую необходимо найти: ");
         /*
@@ -30,7 +32,7 @@ public class FindActionByName implements UserAction{
          */
         List<Item> rsl = tracker.findByName(name);
         if (rsl.size() > 0) {
-            for(Item item: rsl) {
+            for (Item item: rsl) {
                 out.println(item);
             }
         } else {

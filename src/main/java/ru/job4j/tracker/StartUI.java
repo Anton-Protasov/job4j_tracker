@@ -8,7 +8,8 @@ import java.util.List;
  * 2.1. Реализация класса StartUI [#395219]
  * консольное приложение для работы с классом ru.job4j.tracker.Tracker
  * При запуске метода main в классе StartUI пользователю отображается следующее меню в консоли:
-0. Add new Item / 1. Show all items / 2. Edit item / 3. Delete item / 4. Find item by Id / 5. Find items by name /
+0. Add new Item / 1. Show all items / 2. Edit item / 3. Delete item
+* / 4. Find item by Id / 5. Find items by name /
 / 6. Exit Program / Select:
  */
 
@@ -160,8 +161,6 @@ public void init(Input input, Tracker tracker, List<UserAction> actions) {
 
     public static void main(String[] args) {
         Tracker tracker = new Tracker();
-        tracker.naturalOrder();
-        tracker.reversOrder();
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
 //        new StartUI().init(input, tracker);

@@ -1,3 +1,4 @@
+/*
 package ru.job4j.oop;
 
 public class BallStory {
@@ -13,3 +14,4 @@ public class BallStory {
         fox.tryEat(ball);
     }
 }
+*/
