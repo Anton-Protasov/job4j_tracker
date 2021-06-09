@@ -269,6 +269,7 @@ public class StartUITest {
                 "1. Exit Program" + System.lineSeparator()));
     }
  */
+    /*
     @Test
     public void whenFindByIDAction() {
         Tracker tracker = new Tracker();
@@ -292,6 +293,7 @@ public class StartUITest {
                 + "0. Find item by Id" + System.lineSeparator()
                 + "1. Exit Program" + System.lineSeparator()));
     }
+     */
 /*
     @Test
     public void whenInvalidExit() {
