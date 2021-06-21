@@ -15,6 +15,8 @@ public class FI {
                 new Attachment("image 229", 23)
         };
 
+        String[] str = {"image 5000", "image -3340", "image 229"};
+
         /*
         Comparator<Attachment> comparator = new Comparator<Attachment>() {
             @Override
@@ -29,22 +31,22 @@ public class FI {
         /*
         Строки сравниваются через метод compareTo.
          */
-        Comparator<Attachment> cmpText = (left, right) -> left.getName().compareTo(right.getName());
+        Comparator<String> cmpText = (left, right) -> left.compareTo(right);
 
         /*
         Строки сравниваются по убыванию длины.
          */
-        Comparator<Attachment> cmpDescSize = (left, right) ->
-                right.getName().length() - left.getName().length();
+        Comparator<String> cmpDescSize = (left, right) ->
+                right.length() - left.length();
 
         // Arrays.sort(atts, comparator);
-        Arrays.sort(atts, cmpText);
-        for (Attachment i: atts) {
+        Arrays.sort(str, cmpText);
+        for (String i: str) {
             System.out.println(i);
         }
 
-        Arrays.sort(atts, cmpDescSize);
-        for (Attachment i: atts) {
+        Arrays.sort(str, cmpDescSize);
+        for (String i: str) {
             System.out.println(i);
         }
     }
