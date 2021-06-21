@@ -9,24 +9,20 @@ import java.util.Comparator;
 public class LambdaUsage {
 
     public static void main(String[] args) {
-        Attachment[] atts = {
-                new Attachment("image 5000", 20),
-                new Attachment("image -3340", 120),
-                new Attachment("image 229", 23)
-        };
+        String[] str = {"image 5000", "image -3340", "image 229"};
 
         /*
         Строки сравниваются по убыванию длины.
         с выводом отладочной информации на консоль.
          */
-        Comparator<Attachment> cmpDescSize = (left, right) -> {
-            System.out.println("compare - " + left.getName().length() + " : "
-                    + right.getName().length());
-            return right.getName().length() - left.getName().length();
+        Comparator<String> cmpDescSize = (left, right) -> {
+            System.out.println("compare - " + left.length() + " : "
+                    + right.length());
+            return right.length() - left.length();
         };
 
-        Arrays.sort(atts, cmpDescSize);
-        for (Attachment i: atts) {
+        Arrays.sort(str, cmpDescSize);
+        for (String i: str) {
             System.out.println(i);
         }
     }
