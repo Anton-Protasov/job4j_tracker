@@ -37,7 +37,7 @@ public class FI {
         Строки сравниваются по убыванию длины.
          */
         Comparator<String> cmpDescSize = (left, right) ->
-                right.length() - left.length();
+                Integer.compare(right.length(), left.length());
 
         // Arrays.sort(atts, comparator);
         Arrays.sort(str, cmpText);
